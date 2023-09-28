@@ -1,0 +1,65 @@
+1. Why did you choose the tools, libraries, and language you used for the coding exercise?
+
+    With this being a simple and straightforward application only intended to be used by a single user,
+    I opted for a lightweight, easy to understand approach. With no need for my solution to be exactly "scaleable", 
+    Python felt like a natural fit in order to maximize development time and readability of my code. 
+
+    I then opted to use Flask due to its lightweight and simple nature. With Flask, you can go from not having Python installed to routing 
+    an API call in mere minutes. Using @app.route() instantly turns any function into an endpoint with little legwork.
+    All this and the lack of needing some "monolithic architecture" made Flask the natural choice.
+
+    I then used unittest in order to cleanly test my solution as I was developing it. Being able to use unittest allows for precise
+    error tracking which helped a ton. I was also able to toss the given test on the writeup into a unit test method with little trouble.
+
+    When it came to managing transactional data, I utilized Python's in-built data structures. They offered both efficient data access and ease of use, 
+    which simplified the task of storing and manipulating transactional data. 
+
+    Additonally, I added some overhead for tracking the rollover of historical point totals when they're being spent. This allowed me to meet the requirements of 
+    spending "points added first" without altering the historical record of transactions.
+
+2. What are the advantages and disadvantages of your solution?
+
+Advantages: 
+
+    Simplicity: This solution is straightforward and easy to read having been written in Python and well-documented. The only true dependency is Flask,
+    making it easy to set up and run with only two commands after Python is installed. The logic of my code feels intuitive and easy to follow.
+
+    Transaction Tracking: Transactions are sorted by timestamp and always maintain an accurate historical record. I added some simple overhead in order to 
+    cleanly iterate through transactions when spending points without altering the historical record of points. By keeping track of negative points 
+    when they're added via /add, I am able to easily track when deductions need to be made from historical transactions as I am iterating through them 
+    when /spend is called, without altering the historical data itself.
+
+    In-Memory Storage: I have quick data access times as everything is stored in memory. This is good for a small-scale, short-lived application like this one.
+
+    Testing: By utilizing unit testing I am able to quickly test if my implementation is working as intended.
+
+    Future Buildout: If I were to further flesh this application out, I believe I made it in such a way that it would be relatively simple to do things like
+    add a proper DB, etc.
+
+Disadvantages:
+    Scalability: Due to how data is managed in-memory the solution is not scalable and would not work for large records.  
+    Supporting multiple users would also not be functional due to blatant memory overwrites. Use of global storage also makes it easy for race
+    conditions to appear. In a real world scenario, a proper database should be used.
+
+    Persistence: My solution does not persist data once the server shuts down. Again, in a real world scenario, a proper database should be used.
+
+    Python & Flask: While feeling like the natural choice for this project, being easy to develop quickly, easy to read, and lightweight, Python and Flask
+    historically don't run as efficiently as other language/framework options out there under heavy load.
+
+3. What has been a favorite school/personal project thus far? What about it that challenged you?
+    I recently worked on a project called Nova. Initially a personal project, this application was developed using React.js and Node.js as an employee
+    management system. Nova handles various tasks such as scheduling, attendance tracking, employee feedback, etc. At the time, I was also working as a help 
+    desk agent at UW-Madison's IT department, known as DoIT. Nova was pitched to DoIT and was granted approval to be implemented wide scale for use by all employees.
+
+    After that, the University took me on as a Software Developer to continue developing the application. One of the greatest challenges I faced while working on
+    This application was porting over an old employee records database and making it compatible with Nova. It was the first time I worked with relational databases 
+    in this capacity and served as an excellent learning experience. I opted to redesign and normalize both the database, and develop a new API enabling connection to it. 
+    In this, I ensured strict adherence to the Model-View-Controller (MVC) paradigm and a robust RESTful interface. 
+
+    Another challenge I faced was limited storage constraints. The University gave me a strict 5GB storage quota for the web server. This led me to become extremely efficient
+    in the utilization of my resources and think outside of the box. I made alterations such as the storage of images becoming compressed and iCal files being generated on the fly. 
+
+    In all, this experience taught me the importance of being adaptable and resourceful as I managed a full-fledged scalable web application for the first time. 
+
+
+
